@@ -1,0 +1,24 @@
+---
+
+classes:
+ - profile::iis
+
+
+profile::iis::app_pools:
+  eddy_app_pool:
+    enable_32_bit: true
+    managed_runtime_version: 'v4.0'
+
+profile::iis::app_sites:
+  'www.carvalho.com.au':
+    site_path: 'C:\inetpub\wwwroot\carvalhocomau'
+    port: '80'
+    ip_address: '*'
+    host_header: 'www.carvalho.com.au'
+    app_pool: 'eddy_app_pool'
+
+profile::iis::virtual_apps:
+  app:
+    site_name: 'www.carvalho.com.au'
+    site_path: 'C:\inetpub\wwwroot\carvalhocomauapp'
+    app_pool: 'eddy_app_pool'
